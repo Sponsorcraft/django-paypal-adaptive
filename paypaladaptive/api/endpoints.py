@@ -32,6 +32,7 @@ class PaypalAdaptiveEndpoint(object):
     def __init__(self, *args, **kwargs):
         remote_address = kwargs.pop('remote_address', None)
         self._build_headers(remote_address=remote_address)
+        self.data = {'requestEnvelope': {'errorLanguage': 'en_US'}, }
         self.data.update(self.prepare_data(*args, **kwargs))
 
     def _build_headers(self, remote_address=None):
