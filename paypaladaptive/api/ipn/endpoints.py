@@ -8,6 +8,7 @@ except ImportError:
     import django.utils.simplejson as json
 
 from dateutil.parser import parse
+from django.core.serializers.json import DjangoJSONEncoder
 from moneyed import Money, Currency
 from pytz import utc
 
@@ -83,7 +84,7 @@ class IPN(object):
             ipn_log = IPNLog()
             ipn_log._start_time = time.time()
             ipn_log.path = request.path
-            ipn_log.post = json.dumps(request.POST)
+            ipn_log.post = json.dumps(request.POST, cls=DjangoJSONEncoder)
             ipn_log.save()
 
         # verify that the request is paypal's
