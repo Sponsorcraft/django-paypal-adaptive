@@ -3,15 +3,13 @@ Paypal Adaptive Payment callback and IPN URLs
 
 """
 
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 
 from . import views
 from . import settings
 
 
-urlpatterns = patterns(
-    '',
-
+urlpatterns = [
     url(r'^pay/cancel/(?P<payment_id>\d+)/(?P<secret_uuid>\w+)/$',
         views.payment_cancel, name="paypal-adaptive-payment-cancel"),
 
@@ -23,12 +21,10 @@ urlpatterns = patterns(
 
     url(r'^pre/return/(?P<preapproval_id>\d+)/(?P<secret_uuid>\w+)/$',
         views.preapproval_return, name="paypal-adaptive-preapproval-return"),
-)
+]
 
 if settings.USE_IPN:
-    urlpatterns += patterns(
-        '',
-
+    urlpatterns += [
         url(r'^ipn/(?P<object_id>\d+)/(?P<object_secret_uuid>\w+)/$',
             views.ipn, name="paypal-adaptive-ipn"),
-    )
+    ]
