@@ -321,13 +321,15 @@ class Refund(PaypalAdaptive):
     # TODO: finish model
 
 
+def default_valid_date():
+    return timezone.now() + Preapproval.default_valid_range
+
+
 class Preapproval(PaypalAdaptive):
     """Models a preapproval made using Paypal"""
 
     update_endpoint = api.PreapprovalDetails
     default_valid_range = timedelta(days=90)
-    default_valid_date = lambda: (timezone.now() +
-                                  Preapproval.default_valid_range)
 
     STATUS_CHOICES = (
         ('new', _(u'New')),
