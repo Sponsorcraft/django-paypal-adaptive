@@ -84,14 +84,14 @@ class PaypalAdaptiveEndpoint(object):
                                   "prepare_data method.")
 
     def pretty_response(self):
-        print json.dumps(json.loads(self.raw_response),
+        print(json.dumps(json.loads(self.raw_response),
                          indent=4,
-                         cls=DjangoJSONEncoder)
+                         cls=DjangoJSONEncoder))
 
     def pretty_request(self):
-        print json.dumps(self.data,
+        print(json.dumps(self.data,
                          indent=4,
-                         cls=DjangoJSONEncoder)
+                         cls=DjangoJSONEncoder))
 
 
 class Pay(PaypalAdaptiveEndpoint):
