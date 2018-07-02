@@ -158,7 +158,7 @@ class IPN(object):
             self.max_number_of_payments = IPN.process_int(request.POST.get('max_number_of_payments', None))
             self.payment_period = request.POST.get('payment_period', None)
             self.pin_type = request.POST.get('pin_type', None)
-        except Exception, e:
+        except Exception as e:
             logger.error('Could not parse request')
             raise e
 
@@ -196,7 +196,7 @@ class IPN(object):
         if int_str:
             try:
                 val = int(int_str)
-            except ValueError, e:
+            except ValueError as e:
                 if default == 'null':
                     raise e
 

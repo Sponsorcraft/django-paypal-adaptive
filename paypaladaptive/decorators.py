@@ -13,7 +13,7 @@ def takes_ipn(function):
     def _view(request, *args, **kwargs):
         try:
             kwargs['ipn'] = IPN(request)
-        except IpnError, e:
+        except IpnError as e:
             logger.warning("PayPal IPN verify failed: %s", e)
             logger.debug("Request was: %s", request)
             return HttpResponseBadRequest('verify failed')

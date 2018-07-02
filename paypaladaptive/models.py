@@ -103,7 +103,7 @@ class PaypalAdaptive(models.Model):
         try:
             __, endpoint = self.call(self.update_endpoint,
                                      **self.get_update_kwargs())
-        except ValueError, e:
+        except ValueError as e:
             model_name = self.__class__.__name__
             logger.warning('Could not update %s:\n%s', model_name, e.message)
         else:

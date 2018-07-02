@@ -22,7 +22,7 @@ class UrlRequest(object):
 
             self._response = UrlResponse(response.read(), response.info(),
                                          response.getcode())
-        except urllib2.URLError, e:
+        except urllib2.URLError as e:
             self._response = UrlResponse(e.reason, {}, None)
 
         return self
