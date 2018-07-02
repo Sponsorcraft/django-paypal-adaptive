@@ -1,4 +1,4 @@
-import urllib2
+from urllib import request
 
 
 class UrlResponse(object):
@@ -15,14 +15,14 @@ class UrlRequest(object):
         if headers is None:
             headers = {}
 
-        request = urllib2.Request(url, data=data, headers=headers)
+        request = request.Request(url, data=data, headers=headers)
 
         try:
-            response = urllib2.urlopen(request)
+            response = request.urlopen(request)
 
             self._response = UrlResponse(response.read(), response.info(),
                                          response.getcode())
-        except urllib2.URLError as e:
+        except request.URLError as e:
             self._response = UrlResponse(e.reason, {}, None)
 
         return self
